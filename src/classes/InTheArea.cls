@@ -1,5 +1,5 @@
 public class InTheArea {   
-	ITA_AddressHelper addressHelper;
+	ITA_AddressHelper addressHelper; 
 	SObjectIdHelper sObjectIdHelper;
 	YelpWrapper yelpWrapper;
 	 
@@ -13,15 +13,15 @@ public class InTheArea {
 		this(new ITA_AddressHelper(), new SObjectIdHelper(), new YelpWrapper());
 	}
 	
-	@AuraEnabled
 	// @return	the list of locations, in JSON. 
-	public static String getListByGeoCoordinates(String searchTerm, Decimal latitude, Decimal longitude) {
+	@AuraEnabled
+	public static String getListByGeoCoordinates(Decimal latitude, Decimal longitude, String searchTerm) {
 		return (new InTheArea()).request(searchTerm, latitude, longitude); 
 	}
 
-	@AuraEnabled
 	// @return	the list of locations, in JSON. 
-	public static String getListForRecord(String searchTerm, String sObjectType, String recordId) {
+	@AuraEnabled
+	public static String getLocationListForRecord(String sObjectType, String recordId, String searchTerm) {
 		return (new InTheArea()).request(searchTerm, sObjectType, (Id) recordId);
 	}
  

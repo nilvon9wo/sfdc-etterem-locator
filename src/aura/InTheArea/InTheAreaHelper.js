@@ -1,5 +1,5 @@
 ({
-	closeItem: function(currentItem) {
+	closeItem: function(currentItem) { 
 		if (currentItem) {
 			var itemDetails = currentItem.querySelector('[data-details]');
 			$A.util.addClass(itemDetails, 'slds-hide');
@@ -22,16 +22,20 @@
     },
 
     getLocationList: function(component, helper) {
-    	console.log('### GET THE FUCKING LIST!');
-		/*
+		/* 
     	$A.util.removeClass(component.find('spinner'), 'slds-hide');
     	var searchTerm = helper.selectSearchTerm(component);
-		
-		var action = this.getLocationListForRecord(component, searchTerm);
-        //var action = component.get('v.recordId')
-        //		? this.getLocationListForRecord(component)
-		// 		: this.getLocationListForPosition(component);
+		var recordId = component.get('v.recordId');
 
+		console.log('### searchTerm: ', searchTerm);
+		console.log('### recordId: ', recordId);
+
+		var action = (recordId) 
+			? helper.getLocationListForRecord(component, searchTerm)
+			: helper.getLocationListForPosition(component, searchTerm);
+			
+		console.log('### action: ', action);
+		
 
         action.setCallback(this, function(response) {
             this.doLayout(component, response);
@@ -42,7 +46,7 @@
     },
 
     getLocationListForPosition: function(component, searchTerm) {
-    /*
+    	/*
     	var coordinates = component.get("v.location").coords;
         var action = component.get('c.getListByGeoCoordinates');
        	action.setParams({
@@ -51,19 +55,22 @@
             searchTerm: searchTerm;
         });
 		return action;
-	*/		    	
+		*/
     },
     
     getLocationListForRecord: function(component, searchTerm) {
     /*
-        var action = component.get('c.getListForRecord');
+    	//console.log('#### component', component);
+    	console.log('#### searchTerm', searchTerm);
+
+    	var action = component.get('c.getListForRecord');
        	action.setParams({
             recordId: component.get('v.recordId'),
             searchTerm: searchTerm,
             sObjectType: component.get('v.sObjectName')
         });
-		return action;
 	*/    	
+		return action;
     }, 
 
     openItem: function(component, selectedItem) {

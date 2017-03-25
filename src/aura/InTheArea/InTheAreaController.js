@@ -1,14 +1,15 @@
-({
+({ 
 	doInit : function(component, event, helper) {
+		console.log('##### TEST 14324');
 		var main = component.find('main');
 		$A.util.removeClass(main, 'small');
 		$A.util.addClass(main, component.get('v.designHeight'));
 
 		if (component.get('v.recordId')) {
-			helper.getLocationList(component, helper);	 
+			//helper.getLocationList(component, helper);	 
 		} else {
-			helper.positionStyleEnhancements(component);
-			helper.setPosition(component, helper);
+			//helper.positionStyleEnhancements(component);
+			//helper.setPosition(component, helper);
 		}
 	},
     
@@ -18,6 +19,6 @@
 	},    
     
 	updateSearch : function(component, event, helper) {
-		helper.getLocationList(component, helper);
+		//helper.getLocationList(component, helper);
 	}    
 })
