@@ -21,55 +21,38 @@
         }
     },
 
-    getLocationList: function(component, helper) {
-		/* 
-    	$A.util.removeClass(component.find('spinner'), 'slds-hide');
-    	var searchTerm = helper.selectSearchTerm(component);
-		var recordId = component.get('v.recordId');
+    getLocationList: function(component) {
+        $A.util.removeClass(component.find('spinner'), 'slds-hide');
+        var searchTerm = this.selectSearchTerm(component);
 
-		console.log('### searchTerm: ', searchTerm);
-		console.log('### recordId: ', recordId);
-
-		var action = (recordId) 
-			? helper.getLocationListForRecord(component, searchTerm)
-			: helper.getLocationListForPosition(component, searchTerm);
-			
-		console.log('### action: ', action);
-		
-
+        var action = (component.get('v.recordId')) 
+            ? this.getLocationListForRecord(component, searchTerm)
+        	: this.getLocationListForPosition(component, searchTerm);
+        
         action.setCallback(this, function(response) {
             this.doLayout(component, response);
         });
-
         $A.enqueueAction(action);
-		*/
     },
 
     getLocationListForPosition: function(component, searchTerm) {
-    	/*
-    	var coordinates = component.get("v.location").coords;
+    	var coordinates = component.get('v.location').coords;
         var action = component.get('c.getListByGeoCoordinates');
        	action.setParams({
-       		latitude = coordinates.latitude,
-       		longitude = coordinates.longitude,
-            searchTerm: searchTerm;
+            latitude: coordinates.latitude,
+            longitude: coordinates.longitude,
+            searchTerm: searchTerm
         });
 		return action;
-		*/
     },
     
     getLocationListForRecord: function(component, searchTerm) {
-    /*
-    	//console.log('#### component', component);
-    	console.log('#### searchTerm', searchTerm);
-
-    	var action = component.get('c.getListForRecord');
+	  	var action = component.get('c.getLocationListForRecord');
        	action.setParams({
             recordId: component.get('v.recordId'),
-            searchTerm: searchTerm,
-            sObjectType: component.get('v.sObjectName')
+            sObjectType: component.get('v.sObjectName'),
+            searchTerm: searchTerm
         });
-	*/    	
 		return action;
     }, 
 
@@ -93,7 +76,7 @@
         	: component.get('v.defaultSearch');
     },
 
-	setPosition: function(component, helper) {
+	setPosition: function(component) {
 		$A.util.removeClass(component.find('spinner'), 'slds-hide');
 		navigator.geolocation.getCurrentPosition(handleCurrentPosition, handleError);
 		

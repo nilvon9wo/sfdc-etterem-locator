@@ -1,12 +1,6 @@
 <aura:component access="global"  
                 controller="InTheArea"  
-                implements="
-                	flexipage:availableForAllPageTypes,
-                	flexipage:availableForRecordHome,
-                	force:appHostable,
-                	force:hasRecordId,
-                	force:hasSObjectName
-                "
+                implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,force:hasRecordId,force:hasSObjectName"
                 >
 
     <aura:attribute name="defaultSearch" type="String" />
