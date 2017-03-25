@@ -1,5 +1,7 @@
-({ 
+({
 	doInit : function(component, event, helper) {
+		console.log('#### DIE PAINFULLY!');
+	/*
 		var main = component.find('main');
 		$A.util.removeClass(main, 'small');
 		$A.util.addClass(main, component.get('v.designHeight'));
@@ -10,14 +12,19 @@
 			helper.positionStyleEnhancements(component);
 			helper.setPosition(component, helper);
 		}
+	*/		
 	},
     
     showDetails: function(component, event, helper) {
+	/*    
 		helper.closeItem(component.get('v.openItem'));
 		helper.openItem(component, event.currentTarget);
+	*/		
 	},    
     
 	updateSearch : function(component, event, helper) {
+	/*
 		helper.getLocationList(component, helper);
+	*/		
 	}    
 })
