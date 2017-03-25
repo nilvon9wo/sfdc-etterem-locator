@@ -1,15 +1,12 @@
 ({
 	closeItem: function(currentItem) {
-	/*
 		if (currentItem) {
 			var itemDetails = currentItem.querySelector('[data-details]');
 			$A.util.addClass(itemDetails, 'slds-hide');
 		}
-	*/		
 	}, 
 
     doLayout: function(component, response) {
-    /*
     	$A.util.addClass(component.find('spinner'), 'slds-hide');
 
         var warning = component.find('warning');
@@ -22,10 +19,10 @@
         	$A.util.addClass(warning, 'slds-hide');
         	component.set('v.restaurantList', restaurantList);
         }
-	*/        
     },
 
     getLocationList: function(component, helper) {
+    	console.log('### GET THE FUCKING LIST!');
 		/*
     	$A.util.removeClass(component.find('spinner'), 'slds-hide');
     	var searchTerm = helper.selectSearchTerm(component);
@@ -70,33 +67,26 @@
     }, 
 
     openItem: function(component, selectedItem) {
-    /*
 		component.set('v.openItem', selectedItem);
 		var itemDetails = selectedItem.querySelector('[data-details]');
 		$A.util.removeClass(itemDetails, 'slds-hide');
-	*/		
     },
 
     positionStyleEnhancements: function(component) {
-    /*
 			$A.util.addClass(component.find('main'), 'autoHeight');
 			var scrollableArea = component.find('scrollableArea');
 			$A.util.removeClass(scrollableArea, 'scroll-container');
 			$A.util.removeClass(scrollableArea, 'slds-scrollable-y');
-	*/			
     },
     
     selectSearchTerm: function (component) {
-    /*
         var searchTerm = component.find('searchTerm').get('v.value');
         return searchTerm
         	? searchTerm
         	: component.get('v.defaultSearch');
-	*/        	
     },
 
 	setPosition: function(component, helper) {
-	/*
 		$A.util.removeClass(component.find('spinner'), 'slds-hide');
 		navigator.geolocation.getCurrentPosition(handleCurrentPosition, handleError);
 		
@@ -108,6 +98,5 @@
 			component.set('v.errorMessage', 'Could not get your current geolocation.');
 			$A.util.removeClass(component.find('warning'), 'slds-hide');
 		}
-	*/		
 	}
 })
