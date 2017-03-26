@@ -50,7 +50,6 @@
 	  	var action = component.get('c.getLocationListForRecord');
        	action.setParams({
             recordId: component.get('v.recordId'),
-            sObjectType: component.get('v.sObjectName'),
             searchTerm: searchTerm
         });
 		return action;

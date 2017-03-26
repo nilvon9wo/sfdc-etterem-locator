@@ -1,18 +1,16 @@
 public class InTheArea {   
 	ITA_AddressHelper addressHelper; 
-	SObjectIdHelper sObjectIdHelper;
 	YelpWrapper yelpWrapper;
 	 
-	public InTheArea(ITA_AddressHelper addressHelper, SObjectIdHelper sObjectIdHelper, YelpWrapper yelpWrapper) {
+	public InTheArea(ITA_AddressHelper addressHelper, YelpWrapper yelpWrapper) {
 		this.addressHelper = addressHelper;
-		this.sObjectIdHelper = sObjectIdHelper;
 		this.yelpWrapper = yelpWrapper;
 	}
- 
+   
 	public InTheArea() {
-		this(new ITA_AddressHelper(), new SObjectIdHelper(), new YelpWrapper());
+		this(new ITA_AddressHelper(), new YelpWrapper());
 	}
-	
+	 
 	// @return	the list of locations, in JSON. 
 	@AuraEnabled
 	public static String getListByGeoCoordinates(Decimal latitude, Decimal longitude, String searchTerm) {
@@ -21,8 +19,8 @@ public class InTheArea {
 
 	// @return	the list of locations, in JSON. 
 	@AuraEnabled
-	public static String getLocationListForRecord(String sObjectType, String recordId, String searchTerm) {
-		return (new InTheArea()).request(searchTerm, sObjectType, (Id) recordId);
+	public static String getLocationListForRecord(String recordId, String searchTerm) {
+		return (new InTheArea()).request(searchTerm, (Id) recordId);
 	}
  
 	@testVisible
@@ -31,10 +29,9 @@ public class InTheArea {
 	}
  
 	@testVisible
-	private String request(String searchTerm, String sObjectType, Id recordId) {
+	private String request(String searchTerm, Id recordId) {
 		try {
-			SObjectIdHelper.SObjectId typedId = this.sObjectIdHelper.getIdFor(sObjectType, recordId);
-			return this.yelpWrapper.request(searchTerm, this.addressHelper.getAddress(typedId));   
+			return this.yelpWrapper.request(searchTerm, this.addressHelper.getAddress(recordId));   
 		}
 		catch (Exception ex) {
 			return '{' + 

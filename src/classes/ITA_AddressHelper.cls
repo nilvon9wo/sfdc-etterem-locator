@@ -1,32 +1,21 @@
 public class ITA_AddressHelper {
-	ClassHelper classHelper; 
-	ITA_AccountHelper accountHelper;
-	ITA_ContactHelper contactHelper;
+ 
+	private static Map<SObjectType, Type> locationProviderByIdTypeMap = new Map<SObjectType, Type>{
+		Account.sObjectType => ITA_AccountHelper.class,
+		Contact.sObjectType => ITA_ContactHelper.class
+	}; 
 
-	private Map<String, ProvidesLocation> locationProviderByIdTypeMap; 
-
-	public ITA_AddressHelper(ClassHelper classHelper, ITA_AccountHelper accountHelper, ITA_ContactHelper contactHelper) {
-		this.classHelper = classHelper;
-		this.accountHelper = accountHelper;
-		this.contactHelper = contactHelper;
-		
-		locationProviderByIdTypeMap = new Map<String, ProvidesLocation>{
-			'AccountId' => accountHelper,
-			'ContactId' => contactHelper
-		};
-	}
-
-	public ITA_AddressHelper() { 
-		this(new ClassHelper(), new ITA_AccountHelper(), new ITA_ContactHelper());
-	}
-    
-    public String getAddress (SObjectIdHelper.SObjectId recordId) {
-    	String idType = classHelper.getNameFor(recordId);
-    	ProvidesLocation locationProvider = locationProviderByIdTypeMap.get(idType);
+    public String getAddress (Id id) {
+    	if (id == null) {
+    		throw new ITA_AddressHelperException('sObject Id required.');	
+    	}
+    	
+    	Type locationProviderType = locationProviderByIdTypeMap.get(id.getSObjectType());
+    	ProvidesLocation locationProvider = (ProvidesLocation) locationProviderType.newInstance();
     	if (locationProvider != null){
-    		return locationProvider.selectLocation(recordId.id);
+    		return locationProvider.selectLocation(id);
     	} else {
-    		throw new ITA_AddressHelperException('Unsupported SObject Id Type');	
+    		throw new ITA_AddressHelperException('Unsupported SObject Id Type.');	
     	}
     } 
-}
+} 
