@@ -14,6 +14,5 @@ public class ITA_ContactHelper implements ProvidesLocation {
 		return contact.mailingStreet + ', '
 			+ contact.mailingCity + ', '
 			+ contact.mailingState;
-	}
-    
+	}    
 }
